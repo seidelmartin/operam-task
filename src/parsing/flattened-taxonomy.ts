@@ -1,5 +1,7 @@
+import { TaxonomyRecord } from './interface/taxonomy-record'
+
 export class FlattenedTaxonomy {
-  private flattenTree: { name: string, size: number }[] = []
+  private flattenTree: TaxonomyRecord[] = []
   private flattenTreeIndex: Record<string, number> = {}
 
   push (synsetName: string, synsetParent?: string) {
@@ -17,6 +19,10 @@ export class FlattenedTaxonomy {
     while (splittedSynsetParent.pop() && splittedSynsetParent.length) {
       this.flattenTree[this.flattenTreeIndex[splittedSynsetParent.join(' > ')]].size++
     }
+  }
+
+  forEach (fn: (item: TaxonomyRecord, index: number) => void) {
+    this.flattenTree.forEach(fn)
   }
 
   toJSON () {
