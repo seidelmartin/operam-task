@@ -10,7 +10,8 @@
     "build": "rm -rf ./dist && tsc",
     "start": "echo \"NOT YET\"",
     "start:flattenTree": "npm run build && node dist/flatten-xml.js",
-    "start:createTree": "npm run build && node dist/create-tree.js"
+    "start:createTree": "npm run build && node dist/create-tree.js",
+    "start:createFilteredTree": "npm run build && node dist/create-filtered-tree.js"
   },
   "dependencies": {
     "express": "~4.16.1",
