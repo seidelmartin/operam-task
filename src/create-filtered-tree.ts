@@ -7,5 +7,7 @@ const flattenedTaxonomy = parseXmlAndFlatten()
 
 const tree = logExecutionTime(() => createTree(flattenedTaxonomy), 'Tree construction')
 
-writeToFile(`${__dirname}/../resources/tree.json`, JSON.stringify(tree, undefined, 2))
+const filteredTree = logExecutionTime(() => tree!.filter('flora'), 'Tree filtering')
+
+writeToFile(`${__dirname}/../resources/tree_filtered.json`, JSON.stringify(filteredTree, undefined, 2))
   .catch((err) => console.error('Error in writing file', err))
